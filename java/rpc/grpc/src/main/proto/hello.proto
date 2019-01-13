@@ -1,0 +1,27 @@
+//指定格式
+syntax = "proto3";
+
+////生成代码设置
+//生成代码所对应的包
+option java_package = "cn.axboy.demo.rpc.grpc.generate";
+//生成代码外部类名
+option java_outer_classname = "HelloProto";
+//生成的代码是否为多个文件
+option java_multiple_files = false;
+
+
+//定义请求消息
+message HelloReq {
+   string name = 1;
+   int32  age = 2;
+}
+
+//定义响应消息
+message HelloResp {
+    string msg = 1;
+}
+
+//定义服务
+service HelloService {
+    rpc Say (HelloReq) returns (HelloResp) {}
+}
