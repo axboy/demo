@@ -1,6 +1,7 @@
 .gitignore
 !/.gitignore
 
+*.log
 *.class
 .DS_Store
 target/
