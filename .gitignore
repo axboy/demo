@@ -8,9 +8,23 @@ target/
 build/
 .idea/
 
+# maven
 .mvn/
 mvnw
 mvnw.cmd
+
+# android 
+mipmap-mdpi/
+mipmap-hdpi/
+local.properties
+captures/
+libraries/
+
+# gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
 
 ### STS ###
 .apt_generated
