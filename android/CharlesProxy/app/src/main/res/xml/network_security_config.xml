@@ -4,8 +4,13 @@
         <domain includeSubdomains="true">axboy.cn</domain>
         <domain includeSubdomains="true">github.io</domain>
         <trust-anchors>
+            <!--信任系统证书-->
             <certificates src="system" overridePins="true"/>
+
+            <!--信任用户安装的根证书，这里注释，不信任-->
             <!--<certificates src="user" overridePins="true" />-->
+
+            <!--信任指定证书-->
             <certificates src="@raw/charles"/>
         </trust-anchors>
     </domain-config>
