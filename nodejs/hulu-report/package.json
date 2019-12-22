@@ -1,0 +1,23 @@
+{
+    "name": "hulu-report",
+    "version": "1.0.0",
+    "description": "export report by nodejs",
+    "main": "app.js",
+    "author": "zcw",
+    "dependencies": {
+        "mysql": "latest",
+        "koa": "latest",
+        "koa-router": "latest",
+        "koa-static": "latest",
+        "excel-export": "latest",
+        "fs": "latest",
+        "path": "latest",
+        "express": "latest",
+        "node-xlsx": "latest",
+        "urlencode": "latest",
+        "nodemailer": "latest"
+    },
+    "engines": {
+        "node": "*"
+    }
+}
