@@ -8,6 +8,9 @@ target/
 build/
 .idea/
 
+*.out
+.vscode/
+
 # maven
 .mvn/
 mvnw
