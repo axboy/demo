@@ -1,5 +1,7 @@
 package cn.axboy.demo.interview.exception;
 
+import cn.axboy.demo.interview.thread.ReportNumThread;
+
 import java.io.IOException;
 
 /**
@@ -39,9 +41,17 @@ public class TestTryCatchFinally {
         }
     }
 
+    //后台线程不一定会执行finally
+    public void testDaemonThread() {
+        Thread thread = new ReportNumThread();
+        thread.setDaemon(true);
+        thread.start();
+    }
+
     public static void main(String[] args) {
         TestTryCatchFinally test = new TestTryCatchFinally();
         System.out.println("fun1: " + test.fun1());
         System.out.println("fun2: " + test.fun2());
+        test.testDaemonThread();
     }
 }
