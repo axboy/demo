@@ -20,10 +20,17 @@ void selectionSort(int *arr, int n)
 
 void insertionSort(int *arr, int n)
 {
-}
-
-void insertionSort1(int *arr, int n)
-{
+    for (int i = 1; i < n; i++)
+    {
+        int j = i - 1;
+        int tmp = arr[i];
+        while (j >= 0 && tmp < arr[j])
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = tmp;
+    }
 }
 
 void bubbleSort(int *arr, int n)
@@ -40,6 +47,7 @@ void bubbleSort(int *arr, int n)
     }
 }
 
+//冒泡排序优化，提前终止
 void bubbleSort1(int *arr, int n)
 {
     for (int i = 0; i < n; i++)
@@ -53,22 +61,27 @@ void bubbleSort1(int *arr, int n)
                 flag = true;
             }
         }
-        if(!flag){
+        if (!flag)
+        {
             return;
         }
     }
 }
 
+//冒泡排序优化，newn方案
 void bubbleSort2(int *arr, int n)
 {
     int newn = n;
     int t = 0;
     int i = 0;
-    while(newn > 0){
+    while (newn > 0)
+    {
         t = 0;
-        for(i = 1; i< newn; i++){
-            if(arr[i - 1] > arr[i]){
-                swap(arr[i -1], arr[i]);
+        for (i = 1; i < newn; i++)
+        {
+            if (arr[i - 1] > arr[i])
+            {
+                swap(arr[i - 1], arr[i]);
                 t = i;
             }
         }
@@ -80,32 +93,150 @@ void shellSort(int *arr, int n)
 {
 }
 
+void __mergeSort(int *arr, int l, int r);
+void __merge(int *arr, int l, int mid, int r);
+
 void mergeSort(int *arr, int n)
 {
+    __mergeSort(arr, 0, n);
 }
 
+//[l, r)
+void __mergeSort(int *arr, int l, int r)
+{
+    int mid = l + (r - l) / 2;
+    if (l >= mid)
+        return;
+    __mergeSort(arr, l, mid);
+    __mergeSort(arr, mid, r);
+    __merge(arr, l, mid, r);
+}
+
+//自底向上的归并排序
 void mergeSortBU(int *arr, int n)
+{
+    for (int sz = 1; sz <= n; sz += sz)
+    {
+        for (int i = 0; i + sz <= n; i += sz + sz)
+        {
+            int l = i;
+            int r = i + sz + sz;
+            int mid = l + sz; // l + (r - l) / 2
+            if (r > n)
+            {
+                r = n;
+            }
+            __merge(arr, l, mid, r);
+        }
+    }
+}
+
+//[l, mid) & [mid, r)
+void __merge(int *arr, int l, int mid, int r)
+{
+    int *tmpArr = new int[r - l];
+    for (int i = l; i < r; i++)
+    {
+        tmpArr[i - l] = arr[i];
+    }
+    int i = l;
+    int j = mid;
+    int k = l;
+    while (k < r)
+    {
+        //一边提前结束
+        if (i >= mid)
+        {
+            arr[k++] = tmpArr[j - l];
+            j++;
+            continue;
+        }
+        if (j >= r)
+        {
+            arr[k++] = tmpArr[i - l];
+            i++;
+            continue;
+        }
+
+        //归并
+        if (tmpArr[i - l] <= tmpArr[j - l])
+        {
+            arr[k++] = tmpArr[i - l];
+            i++;
+        }
+        else
+        {
+            arr[k++] = tmpArr[j - l];
+            j++;
+        }
+    }
+}
+
+void __quickSort(int *arr, int l, int r);
+int __partition(int *arr, int l, int r);
+void quickSort(int *arr, int n)
+{
+    __quickSort(arr, 0, n);
+}
+
+//[l, r)
+void __quickSort(int *arr, int l, int r)
+{
+    if (l >= r)
+    {
+        return;
+    }
+    int p = __partition(arr, l, r);
+    __quickSort(arr, l, p);
+    __quickSort(arr, p + 1, r);
+}
+
+//[l, r)
+int __partition(int *arr, int l, int r)
+{
+    swap(arr[l], arr[SortTestHelper::generateRandomNum(l, r)]);
+    int p = l;
+    int v = arr[p];
+    //[l + 1, p] <= v
+    //(p + 1, i) > v
+    for (int i = l + 1; i < r; i++)
+    {
+        if (arr[i] <= v)
+        {
+            swap(arr[i], arr[p + 1]);
+            p++;
+        }
+    }
+    swap(arr[l], arr[p]);
+    return p;
+}
+
+//双路快排，对大量重复数据有所优化
+void quickSort2Ways(int *arr, int n)
 {
 }
 
-void quickSort(int *arr, int n)
+//三路快排，对大量重复数据有所优化
+void quickSort3Ways(int *arr, int n)
 {
 }
 
 int main()
 {
-    int n = 50000;
-    int *arr = SortTestHelper::generateRandomArray(n, 0, 100000);
+    int n = 20;
+    int *arr = SortTestHelper::generateRandomArray(n, 0, 100);
     int *arr1 = SortTestHelper::copyIntArray(arr, n);
     int *arr2 = SortTestHelper::copyIntArray(arr, n);
     int *arr3 = SortTestHelper::copyIntArray(arr, n);
 
     //SortTestHelper::printArray(arr, n);
     SortTestHelper::test("selectionSort", selectionSort, arr, n);
-    SortTestHelper::test("bubbleSort", bubbleSort, arr1, n);
-    SortTestHelper::test("bubbleSort1", bubbleSort1, arr2, n);
-    SortTestHelper::test("bubbleSort2", bubbleSort2, arr3, n);
-    // SortTestHelper::printArray(arr, n);
-    // SortTestHelper::printArray(arr1, n);
+    //SortTestHelper::test("insertionSort", insertionSort, arr1, n);
+    //SortTestHelper::test("mergeSort", mergeSort, arr1, n);
+    SortTestHelper::test("mergeSortBU", quickSort, arr1, n);
+    // SortTestHelper::test("bubbleSort1", bubbleSort1, arr2, n);
+    // SortTestHelper::test("bubbleSort2", bubbleSort2, arr3, n);
+    SortTestHelper::printArray(arr, n);
+    SortTestHelper::printArray(arr1, n);
     return 0;
 }

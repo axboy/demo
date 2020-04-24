@@ -6,7 +6,15 @@ using namespace std;
 namespace SortTestHelper
 {
 
-//生成一个随机数组
+//生成一个随机数[lower, upper)
+int generateRandomNum(int lower, int upper)
+{
+    assert(lower <= upper);
+    srand(time(NULL));
+    return rand() % (upper - lower) + lower;
+}
+
+//生成一个随机数组, [lower, upper)
 int *generateRandomArray(int n, int lower, int upper)
 {
     assert(lower <= upper);
@@ -14,7 +22,7 @@ int *generateRandomArray(int n, int lower, int upper)
     srand(time(NULL));
     for (int i = 0; i < n; i++)
     {
-        arr[i] = rand() % (upper - lower + 1) + lower;
+        arr[i] = rand() % (upper - lower) + lower;
     }
     return arr;
 }
@@ -57,8 +65,9 @@ void test(string sortName, void (*sort)(int[], int), int *arr, int n)
     sort(arr, n);
     clock_t endTime = clock();
     assert(isSorted(arr, n));
-    double costTime = double(endTime - startTime) / CLOCKS_PER_SEC;
-    cout << sortName << "\t >>> length: " << n <<" \t cost: "<< costTime << endl;
+    //double costTime = double(endTime - startTime) / CLOCKS_PER_SEC;
+    long costTime = endTime - startTime;
+    cout << sortName << "\t >>> length: " << n << " \t cost: " << costTime << endl;
     return;
 }
 
