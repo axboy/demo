@@ -28,7 +28,7 @@ public class NioServer {
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         while (true) {
-            int selected = selector.select();
+            int selected = selector.select(0);
             if (selected == 0) {
                 continue;
             }
@@ -38,7 +38,6 @@ public class NioServer {
             while (keyIterator.hasNext()) {
                 SelectionKey key = keyIterator.next();
                 keyIterator.remove();
-
                 //对应serverChannel注册op_accept
                 if (key.isAcceptable()) {
                     ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
@@ -53,7 +52,7 @@ public class NioServer {
                 //对应clientChannel注册op_read
                 if (key.isReadable()) {
                     SocketChannel clientChannel = (SocketChannel) key.channel();
-
+                    //fixme 使用nc连接，Ctrl + c 退出，会异常退出
                     //读取输入，清除缓冲区
                     clientChannel.read(buffer);
                     String request = new String(buffer.array(),
