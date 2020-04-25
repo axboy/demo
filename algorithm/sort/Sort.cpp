@@ -18,18 +18,50 @@ void selectionSort(int *arr, int n)
     }
 }
 
+void insertionSort(int *arr, int l, int r);
 void insertionSort(int *arr, int n)
 {
-    for (int i = 1; i < n; i++)
+    insertionSort(arr, 0, n);
+}
+
+//插入排序，指定段[l, r)
+void insertionSort(int *arr, int l, int r)
+{
+    for (int i = l + 1; i < r; i++)
     {
         int j = i - 1;
         int tmp = arr[i];
-        while (j >= 0 && tmp < arr[j])
+        while (j >= l && tmp < arr[j])
         {
             arr[j + 1] = arr[j];
             j--;
         }
         arr[j + 1] = tmp;
+    }
+}
+
+void shellSort(int *arr, int n)
+{
+    int gap = n;
+    while (true)
+    {
+        gap /= 2;
+        for (int i = 0; i < n - gap; i += gap)
+        {
+            //间隔为gap的插入排序
+            int j = i + gap;
+            int tmp = arr[j];
+            while (j >= gap && arr[j - gap] > tmp)
+            {
+                arr[j] = arr[j - gap];
+                j -= gap;
+            }
+            arr[j] = tmp;
+        }
+        if (gap == 1)
+        {
+            return;
+        }
     }
 }
 
@@ -87,10 +119,6 @@ void bubbleSort2(int *arr, int n)
         }
         newn = t;
     }
-}
-
-void shellSort(int *arr, int n)
-{
 }
 
 void __mergeSort(int *arr, int l, int r);
@@ -231,12 +259,13 @@ int main()
 
     //SortTestHelper::printArray(arr, n);
     SortTestHelper::test("selectionSort", selectionSort, arr, n);
-    //SortTestHelper::test("insertionSort", insertionSort, arr1, n);
-    //SortTestHelper::test("mergeSort", mergeSort, arr1, n);
-    SortTestHelper::test("mergeSortBU", quickSort, arr1, n);
+    SortTestHelper::test("insertionSort", insertionSort, arr1, n);
+    SortTestHelper::test("shellSort", shellSort, arr2, n);
+    //SortTestHelper::test("mergeSortBU", quickSort, arr1, n);
     // SortTestHelper::test("bubbleSort1", bubbleSort1, arr2, n);
     // SortTestHelper::test("bubbleSort2", bubbleSort2, arr3, n);
     SortTestHelper::printArray(arr, n);
     SortTestHelper::printArray(arr1, n);
+    SortTestHelper::printArray(arr2, n);
     return 0;
 }
