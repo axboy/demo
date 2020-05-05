@@ -1,18 +1,10 @@
 package cn.axboy.demo.interview.leetcode;
 
+import cn.axboy.demo.interview.leetcode.TreeNode;
+
 //验证二叉搜索树，中序遍历
 //https://leetcode-cn.com/problems/validate-binary-search-tree/
-public class _98_ValidateBinarySearchTree {
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
+public class ValidateBinarySearchTree {
 
     static class Solution {
         public boolean isValidBST(TreeNode root) {

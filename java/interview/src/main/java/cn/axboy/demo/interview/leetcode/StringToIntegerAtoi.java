@@ -6,7 +6,7 @@ package cn.axboy.demo.interview.leetcode;
  * @date 2020/4/13 18:08
  * https://leetcode-cn.com/problems/string-to-integer-atoi/
  */
-public class _8_StringToIntegerAtoi {
+public class StringToIntegerAtoi {
 
     public int myAtoi(String str) {
         if (str == null || str.length() == 0) {
@@ -41,7 +41,7 @@ public class _8_StringToIntegerAtoi {
     }
 
     public static void main(String[] args) {
-        _8_StringToIntegerAtoi demo = new _8_StringToIntegerAtoi();
+        StringToIntegerAtoi demo = new StringToIntegerAtoi();
         System.out.println(demo.myAtoi(""));
         System.out.println(demo.myAtoi("  "));
         System.out.println(demo.myAtoi("  asd1231"));

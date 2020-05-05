@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
  * https://leetcode-cn.com/problems/merge-k-sorted-lists/
  * k路归并
  */
-public class _23_MergeKSortedLists {
+public class MergeKSortedLists {
 
     public static class ListNode {
         int val;

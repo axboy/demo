@@ -7,7 +7,7 @@ package cn.axboy.demo.interview.leetcode;
  * https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
  * 搜索旋转排序数组
  */
-public class _33_SearchInRotatedSortedArray {
+public class SearchInRotatedSortedArray {
     public int search(int[] nums, int target) {
         return search(nums, target, 0, nums.length);
     }
@@ -53,7 +53,7 @@ public class _33_SearchInRotatedSortedArray {
     }
 
     public static void main(String[] args) {
-        _33_SearchInRotatedSortedArray demo = new _33_SearchInRotatedSortedArray();
+        SearchInRotatedSortedArray demo = new SearchInRotatedSortedArray();
         System.out.println(demo.search(new int[]{3, 4, 5, 6, 7, 1, 2}, 7));
         System.out.println(demo.search(new int[]{1, 2, 3, 4, 5, 6, 7}, 6));
         System.out.println(demo.search(new int[]{6, 7, 1, 2, 3, 4, 5}, 1));

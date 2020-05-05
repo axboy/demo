@@ -2,7 +2,7 @@ package cn.axboy.demo.interview.leetcode;
 
 //区间检索，数组不可变
 //https://leetcode-cn.com/problems/range-sum-query-immutable/submissions/
-public class _303_RangeSumQueryImmutable {
+public class RangeSumQueryImmutable {
     private static class NumArray {
 
         //sum[0], [0,0]的和

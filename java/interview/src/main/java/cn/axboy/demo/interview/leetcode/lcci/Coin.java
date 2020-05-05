@@ -1,6 +1,4 @@
-package cn.axboy.demo.interview.leetcode;
-
-import java.util.Arrays;
+package cn.axboy.demo.interview.leetcode.lcci;
 
 /**
  * @author zcw
@@ -8,7 +6,7 @@ import java.util.Arrays;
  * @date 2020/4/23 12:13
  * https://leetcode-cn.com/problems/coin-lcci/
  */
-public class CoinLcci {
+public class Coin {
 
     //硬解，超时
     // n = 25 * a + 10 * b + 5 * c + d
@@ -59,7 +57,7 @@ public class CoinLcci {
     }
 
     public static void main(String[] args) {
-        CoinLcci demo = new CoinLcci();
+        Coin demo = new Coin();
         System.out.println(demo.waysToChange1(10));
         System.out.println(demo.waysToChange1(10));
         System.out.println(demo.waysToChange1(25));

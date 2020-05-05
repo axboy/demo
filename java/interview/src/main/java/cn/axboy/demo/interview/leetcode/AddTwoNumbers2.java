@@ -8,7 +8,7 @@ import java.math.BigInteger;
  * @date 2020/4/14 12:21
  * https://leetcode-cn.com/problems/add-two-numbers-ii/
  */
-public class _455_AddTwoNumbers2 {
+public class AddTwoNumbers2 {
 
     public BigInteger listToNum(ListNode l) {
         BigInteger num = BigInteger.valueOf(0);
@@ -46,19 +46,21 @@ public class _455_AddTwoNumbers2 {
         return numToList(x.add(y));
     }
 
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
     public static void main(String[] args) {
-        _455_AddTwoNumbers2 demo = new _455_AddTwoNumbers2();
+        AddTwoNumbers2 demo = new AddTwoNumbers2();
         ListNode l1 = demo.numToList(new BigInteger("999999999999999999999999999999999"));
         ListNode l2 = demo.numToList(new BigInteger("1"));
         System.out.println(demo.listToNum(demo.addTwoNumbers(l1, l2)));
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
 
-    ListNode(int x) {
-        val = x;
-    }
-}

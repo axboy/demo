@@ -7,7 +7,7 @@ package cn.axboy.demo.interview.leetcode;
  * https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
  * 数组中的逆序对，自底向上求解
  */
-public class _51_ArrayReversePairs {
+public class ArrayReversePairs {
 
     public int reversePairs(int[] nums) {
         int ans = 0;
@@ -54,7 +54,7 @@ public class _51_ArrayReversePairs {
     }
 
     public static void main(String[] args) {
-        _51_ArrayReversePairs demo = new _51_ArrayReversePairs();
+        ArrayReversePairs demo = new ArrayReversePairs();
         System.out.println(demo.reversePairs(new int[]{1, 3, 4, 2, 5}));
     }
 }

@@ -2,7 +2,7 @@ package cn.axboy.demo.interview.leetcode;
 
 //颜色分类，改版的三路快排
 //https://leetcode-cn.com/problems/sort-colors/
-public class _75_SortColors {
+public class SortColors {
     public void sortColors(int[] nums) {
         int p = 0;                  //最后一个0的索引
         int l = 0;                  //从左遍历
@@ -37,7 +37,7 @@ public class _75_SortColors {
     }
 
     public static void main(String[] args) {
-        _75_SortColors test = new _75_SortColors();
+        SortColors test = new SortColors();
         int[] arr = new int[]{2, 0, 2, 1, 1, 0};
         test.sortColors(arr);
         for (int i : arr) {

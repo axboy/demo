@@ -8,7 +8,7 @@ import java.util.*;
  * @date 2020/4/14 15:05
  * https://leetcode-cn.com/problems/design-twitter/
  */
-public class _355_DesignTwitter {
+public class DesignTwitter {
     public static void main(String[] args) {
         Twitter twitter = new Twitter();
 
