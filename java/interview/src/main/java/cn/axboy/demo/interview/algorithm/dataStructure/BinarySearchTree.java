@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author zcw
@@ -100,6 +101,27 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         }
     }
 
+    ////////////////////////////////////////////////////////前序
+    //前序遍历，循环实现
+    public void preOrderByLoop() {
+        System.out.println("bst pre order by loop");
+        if (root == null) {
+            return;
+        }
+        Stack<Node<K, V>> stack = new Stack<>();
+        stack.push(root);
+        while (stack.size() > 0) {
+            Node<K, V> node = stack.pop();
+            System.out.println(node);
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+    }
+
     //前序遍历，先自身，递归左右子树
     public void preOrder() {
         System.out.println("bst pre order");
@@ -113,6 +135,36 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         System.out.println(parent);
         preOrder(parent.left);
         preOrder(parent.right);
+    }
+
+    ////////////////////////////////////////////////////////中序
+    //中序遍历，循环实现
+    public void inOrderByLoop() {
+        System.out.println("bst in order by loop");
+        if (root == null) {
+            return;
+        }
+        Stack<Node<K, V>> stack = new Stack<>();
+        stack.push(root);
+        boolean ignoreLeft = false;
+        while (stack.size() > 0) {
+            if (ignoreLeft) {
+                //忽略左子树，中序就该访问自身了，再处理右子树
+                Node<K, V> node = stack.pop();
+                System.out.println(node);
+                if (node.right != null) {
+                    stack.push(node.right);
+                    ignoreLeft = false;
+                }
+            } else {
+                Node<K, V> node = stack.peek().left;
+                while (node != null) {
+                    stack.push(node);
+                    node = node.left;
+                }
+                ignoreLeft = true;
+            }
+        }
     }
 
     //中序遍历，先递归左子树，再访问自身，最后访问右子树
@@ -130,6 +182,31 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         inOrder(parent.right);
     }
 
+    ////////////////////////////////////////////////////////后序
+    //后序遍历，循环实现
+    public void postOrderByLoop() {
+        System.out.println("bst post order by loop");
+        if (root == null) {
+            return;
+        }
+        Stack<Node<K, V>> stack = new Stack<>();
+        Stack<Node<K, V>> ansStack = new Stack<>();
+        stack.push(root);
+        while (stack.size() > 0) {
+            Node<K, V> node = stack.pop();
+            ansStack.push(node);
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+        }
+        while (ansStack.size() > 0) {
+            System.out.println(ansStack.pop());
+        }
+    }
+
     //后序遍历，先递归访问左右子树，在访问自身
     public void postOrder() {
         System.out.println("bst post order");
@@ -145,6 +222,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         System.out.println(parent);
     }
 
+    ////////////////////////////////////////////////////////层序
     //层序遍历，广度优先遍历
     public void levelOrder() {
         System.out.println("bst level order");
@@ -274,10 +352,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         demo.insert(35, 0);
         demo.insert(42, 0);
         demo.insert(37, 0);
-        //demo.preOrder();
-        //demo.inOrder();
-        //demo.postOrder();
-        demo.levelOrder();
+        demo.preOrder();
+        demo.preOrderByLoop();
+        demo.inOrder();
+        demo.inOrderByLoop();
+        demo.postOrder();
+        demo.postOrderByLoop();
+        //demo.levelOrder();
         //System.out.println("minimum: " + demo.minimum(demo.root));
         //System.out.println("maximum: " + demo.maximum(demo.root));
 
@@ -285,6 +366,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         //demo.remove(35);
         //demo.remove(40);
         //demo.remove(42);
-        demo.levelOrder();
+        //demo.levelOrder();
+        System.out.println("========== the end");
     }
 }
