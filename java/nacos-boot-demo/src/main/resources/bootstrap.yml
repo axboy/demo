@@ -1,0 +1,9 @@
+spring:
+  application.name: nacos-boot-demo
+  cloud.nacos:
+    config:
+      prefix: example
+      file-extension: yaml
+      server-addr: 127.0.0.1:8848
+    discovery:
+      server-addr: 127.0.0.1:8848

@@ -1,0 +1,4 @@
+spring.activemq:
+  broker-url: tcp://test41:61616
+  user: admin
+  password: admin
