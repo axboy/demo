@@ -6,7 +6,7 @@ import java.util.Map;
 
 // https://leetcode-cn.com/problems/lru-cache/
 // Least Frequently Used
-// 双map实现lru
+// 双map实现lfu
 public class LFUCacheWithTwoMap {
 
     private static class Node {

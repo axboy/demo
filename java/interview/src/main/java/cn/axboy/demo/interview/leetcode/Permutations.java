@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
  * @author zcw
  * @version 1.0
  * @date 2020/4/25 13:11
+ * 数据全排列
+ * @see LetterCombinationsOfAPhoneNumber
  */
 public class Permutations {
 

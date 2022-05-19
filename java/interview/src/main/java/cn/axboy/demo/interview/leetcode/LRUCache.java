@@ -3,8 +3,12 @@ package cn.axboy.demo.interview.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-// https://leetcode-cn.com/problems/lru-cache/
-// Least Recently Used
+/**
+ * https://leetcode-cn.com/problems/lru-cache/
+ * Least Recently Used
+ * 双向链表 + Map实现，建议看看LinkedHashMap源码
+ * @see java.util.LinkedHashMap
+ */
 public class LRUCache {
 
     private static class Node {

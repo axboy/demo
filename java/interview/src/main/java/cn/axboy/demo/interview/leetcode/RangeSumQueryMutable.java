@@ -14,6 +14,10 @@ public class RangeSumQueryMutable {
             for (int i = 0; i < nums.length; i++) {
                 data[i] = nums[i];
             }
+            //对于元素个数为2的n次幂，比如length == 8，tree 只要 2 * length 即可。
+            //  eg: 满二叉树，最后一层8个元素，即总的需要8 * 2
+            //对于元素为非2的n次幂，比如length == 9，tree则需要 2 * 16(下一个整数次幂)的长度。参考HashMap的 tableSizeFor方法
+            //  eg: 简单考虑，倒数第二层不超过9个元素，所以总数不会超过4 * length。
             tree = new int[nums.length * 4];
             if (nums.length > 0) {
                 buildTree(0, 0, data.length - 1);
@@ -85,11 +89,14 @@ public class RangeSumQueryMutable {
 
         //获取左孩子索引
         private int lChild(int parent) {
+            //2 * (p + 1) - 1
             return 2 * parent + 1;
         }
 
         //获取右孩子索引
         private int rChild(int parent) {
+            //2 * (p + 1)
+            //lChild + 1
             return 2 * parent + 2;
         }
     }
