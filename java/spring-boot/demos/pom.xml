@@ -11,5 +11,6 @@
 
     <modules>
         <module>web</module>
+        <module>task</module>
     </modules>
 </project>
